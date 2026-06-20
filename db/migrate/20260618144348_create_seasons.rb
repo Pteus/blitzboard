@@ -10,5 +10,7 @@ class CreateSeasons < ActiveRecord::Migration[8.1]
 
     add_index :seasons, :active, unique: true, where: "active = true",
       name: "index_seasons_on_active_true"
+
+    add_index :seasons, :year, unique: true
   end
 end

@@ -21,5 +21,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_144348) do
     t.datetime "updated_at", null: false
     t.integer "year"
     t.index ["active"], name: "index_seasons_on_active_true", unique: true, where: "(active = true)"
+    t.index ["year"], name: "index_seasons_on_year", unique: true
   end
 end
