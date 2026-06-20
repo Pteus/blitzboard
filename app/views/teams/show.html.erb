@@ -3,5 +3,32 @@
   <p><%= @team.city %></p>
 
   <h2>Roster</h2>
-  <p>No players yet.</p>
+  <table>
+    <thead>
+    <tr>
+      <th>Player</th>
+      <th>Lv</th>
+      <th>SH</th>
+      <th>PA</th>
+      <th>BL</th>
+      <th>EN</th>
+      <th>SP</th>
+      <th>AT</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= link_to player.name, player %></td>
+        <td><%= player.level %></td>
+        <td><%= player.sh %></td>
+        <td><%= player.pa %></td>
+        <td><%= player.bl %></td>
+        <td><%= player.en %></td>
+        <td><%= player.sp %></td>
+        <td><%= player.at %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

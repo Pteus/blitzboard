@@ -1,0 +1,26 @@
+<div>
+  <h1><%= @player.name %></h1>
+
+  <p>
+    <% if @player.team %>
+      <%= link_to @player.team.name, @player.team %>
+    <% else %>
+      Free agent
+    <% end %>
+  </p>
+
+  <p>
+    Level: <%= @player.level %>
+  </p>
+
+  <h2>
+    Stats
+  </h2>
+
+  <ul>
+    <% [["Shoot", @player.sh], ["Pass", @player.pa], ["Block", @player.bl],
+        ["Endurance", @player.en], ["Speed", @player.sp], ["Attack", @player.at]].each do |label, val| %>
+      <li><%= label %>: <%= val %></li>
+    <% end %>
+  </ul>
+</div>

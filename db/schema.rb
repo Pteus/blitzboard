@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_20_164709) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_20_184031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "players", force: :cascade do |t|
+    t.integer "at", default: 0, null: false
+    t.integer "bl", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.integer "en", default: 0, null: false
+    t.integer "level", default: 1, null: false
+    t.string "name", null: false
+    t.integer "pa", default: 0, null: false
+    t.integer "sh", default: 0, null: false
+    t.integer "sp", default: 0, null: false
+    t.bigint "team_id"
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_players_on_team_id"
+  end
 
   create_table "seasons", force: :cascade do |t|
     t.boolean "active"
@@ -32,4 +47,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_164709) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
+
+  add_foreign_key "players", "teams", on_delete: :nullify
 end
