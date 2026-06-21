@@ -1,4 +1,4 @@
-class Admin::MatchesController < ApplicationController
+class Admin::MatchesController < Admin::BaseController
   def new
     @match = Match.new
     @teams = Team.order(:name)
