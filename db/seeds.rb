@@ -1,6 +1,6 @@
 # db/seeds.rb
 
-Season.find_or_create_by!(
+season = Season.find_or_create_by!(
   name: "Spira League Season 1",
   year: 2024,
   active: true
@@ -97,6 +97,26 @@ players = [
 players.each do |attrs|
   player = Player.find_or_initialize_by(name: attrs[:name])
   player.update!(attrs)
+end
+
+[
+  [ aurochs, goers, 3, 1, 10.days.ago ],
+  [ goers, psyches, 2, 2, 9.days.ago ],
+  [ fangs, beasts, 1, 0, 8.days.ago ],
+  [ glories, aurochs, 0, 2, 7.days.ago ],
+  [ psyches, fangs, 3, 3, 6.days.ago ],
+  [ beasts, glories, 1, 4, 5.days.ago ],
+  [ aurochs, fangs, 2, 1, 4.days.ago ],
+  [ goers, glories, 0, 1, 3.days.ago ],
+  [ psyches, beasts, 4, 2, 2.days.ago ],
+  [ fangs, goers, 2, 0, 1.day.ago ]
+].each do |home, away, hs, as_, played_at|
+  Match.find_or_create_by!(
+    season: season, home_team: home, away_team: away, played_at: played_at
+  ) do |m|
+    m.home_score = hs
+    m.away_score = as_
+  end
 end
 
 puts "Seeded #{Team.count} teams and #{Player.count} players."

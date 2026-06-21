@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_20_184031) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_20_202458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "away_score", null: false
+    t.bigint "away_team_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "home_score", null: false
+    t.bigint "home_team_id", null: false
+    t.datetime "played_at", null: false
+    t.bigint "season_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["season_id"], name: "index_matches_on_season_id"
+    t.check_constraint "home_score >= 0 AND away_score >= 0", name: "matches_non_negative_scores"
+    t.check_constraint "home_team_id <> away_team_id", name: "matches_different_teams"
+  end
 
   create_table "players", force: :cascade do |t|
     t.integer "at", default: 0, null: false
@@ -48,5 +64,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_184031) do
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
+  add_foreign_key "matches", "seasons", on_delete: :restrict
+  add_foreign_key "matches", "teams", column: "away_team_id", on_delete: :restrict
+  add_foreign_key "matches", "teams", column: "home_team_id", on_delete: :restrict
   add_foreign_key "players", "teams", on_delete: :nullify
 end
