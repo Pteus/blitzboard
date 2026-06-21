@@ -11,6 +11,6 @@ class SeasonTest < ActiveSupport::TestCase
   test "active scope returns the active season" do
     season1 = Season.create!(name: "Season 1", year: 2024, active: true)
     season2 = Season.create!(name: "Season 2", year: 2023, active: false)
-    assert_equal season2, Season.active
+    assert_equal season1, Season.active
   end
 end
