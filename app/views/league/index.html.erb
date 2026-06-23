@@ -1,0 +1,44 @@
+<div>
+  <h1>League Standings</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Team</th>
+      <th>P</th>
+      <th>W</th>
+      <th>D</th>
+      <th>L</th>
+      <th>GF</th>
+      <th>GA</th>
+      <th>PTs</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @standings.each_with_index do |row, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td> <%= link_to row[:team].name, team_path(row[:team]) %></td>
+        <td><%= row[:played] %></td>
+        <td><%= row[:wins] %></td>
+        <td><%= row[:draws] %></td>
+        <td><%= row[:losses] %></td>
+        <td><%= row[:goals_for] %></td>
+        <td><%= row[:goals_against] %></td>
+        <td><%= row[:points] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <% @matches.each do |match| %>
+      <div>
+        <span><%= match.home_team.name %></span>
+        <span><%= match.home_score %> — <%= match.away_score %></span>
+        <span><%= match.away_team.name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
