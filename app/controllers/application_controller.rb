@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  helper_method :admin_signed_in?
+
+  private
+
+  def admin_signed_in?
+    session[:admin].present?
+  end
 end

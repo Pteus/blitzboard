@@ -1,34 +1,47 @@
-<div>
-  <h1><%= @team.name %></h1>
-  <p><%= @team.city %></p>
+<div class="space-y-8">
 
-  <h2>Roster</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>Player</th>
-      <th>Lv</th>
-      <th>SH</th>
-      <th>PA</th>
-      <th>BL</th>
-      <th>EN</th>
-      <th>SP</th>
-      <th>AT</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= link_to player.name, player %></td>
-        <td><%= player.level %></td>
-        <td><%= player.sh %></td>
-        <td><%= player.pa %></td>
-        <td><%= player.bl %></td>
-        <td><%= player.en %></td>
-        <td><%= player.sp %></td>
-        <td><%= player.at %></td>
+  <div class="flex items-center gap-4">
+    <div class="w-2 h-12 rounded" style="background-color: <%= @team.color %>;"></div>
+    <div>
+      <h1 class="text-3xl accent"><%= @team.name %></h1>
+      <p class="muted"><%= @team.city %></p>
+    </div>
+  </div>
+
+  <h2 class="text-xl primary">Roster</h2>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+      <tr class="text-xs uppercase tracking-widest primary">
+        <th class="pb-3 text-left">Player</th>
+        <th class="pb-3 text-center">Lv</th>
+        <th class="pb-3 text-center">SH</th>
+        <th class="pb-3 text-center">PA</th>
+        <th class="pb-3 text-center">BL</th>
+        <th class="pb-3 text-center">EN</th>
+        <th class="pb-3 text-center">SP</th>
+        <th class="pb-3 text-center">AT</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @players.each do |player| %>
+        <tr class="table-row">
+          <td class="py-3"><%= link_to player.name, player %></td>
+          <td class="py-3 text-center">
+            <span class="badge-accent"><%= player.level %></span>
+          </td>
+          <td class="py-3 text-center"><%= player.sh %></td>
+          <td class="py-3 text-center"><%= player.pa %></td>
+          <td class="py-3 text-center"><%= player.bl %></td>
+          <td class="py-3 text-center"><%= player.en %></td>
+          <td class="py-3 text-center"><%= player.sp %></td>
+          <td class="py-3 text-center"><%= player.at %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
 </div>

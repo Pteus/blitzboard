@@ -1,22 +1,42 @@
-<h1>Match History</h1>
+<div class="space-y-6">
 
-<table>
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Home</th>
-    <th>Score</th>
-    <th>Away</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @matches.each do |match| %>
-    <tr>
-      <td><%= match.played_at.strftime("%b %-d, %Y") %></td>
-      <td><%= match.home_team.name %></td>
-      <td><%= match.home_score %> — <%= match.away_score %></td>
-      <td><%= match.away_team.name %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+  <h1 class="text-3xl accent">Match History</h1>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+      <tr class="text-xs uppercase tracking-widest primary">
+        <th class="pb-5 pr-8 text-left">Date</th>
+        <th class="pb-5 px-6 text-left">Home</th>
+        <th class="pb-5 px-6 text-center">Score</th>
+        <th class="pb-5 pl-8 text-left">Away</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @matches.each do |match| %>
+        <tr class="table-row border-b border-white/5">
+          <td class="py-5 pr-8 muted text-sm">
+            <%= match.played_at.strftime("%b %-d, %Y") %>
+          </td>
+
+          <td class="py-5 px-6 <%= 'font-bold accent' if match.home_score > match.away_score %>">
+            <%= link_to match.home_team.name, match.home_team %>
+          </td>
+
+          <td class="py-5 px-6 text-center">
+            <span class="badge-primary">
+              <%= match.home_score %> — <%= match.away_score %>
+            </span>
+          </td>
+
+          <td class="py-5 pl-8 <%= 'font-bold accent' if match.away_score > match.home_score %>">
+            <%= link_to match.away_team.name, match.away_team %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

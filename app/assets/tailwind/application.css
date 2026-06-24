@@ -1,1 +1,172 @@
 @import "tailwindcss";
+
+:root {
+    --c-bg: #0a1628;
+    --c-surface: #0d1f3c;
+    --c-border: #1e3a5f;
+    --c-text: #e2e8f0;
+    --c-muted: rgba(226, 232, 240, 0.5);
+    --c-primary: #00b4d8;
+    --c-accent: #f4d03f;
+}
+
+.primary {
+    color: var(--c-primary);
+}
+
+.accent {
+    color: var(--c-accent);
+}
+
+.muted {
+    color: var(--c-muted);
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s;
+}
+
+a:hover {
+    opacity: 0.75;
+}
+
+body {
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+}
+
+/* Nav links */
+.nav-link {
+    color: var(--c-text);
+    transition: color 0.15s;
+}
+
+.nav-link:hover {
+    color: var(--c-primary);
+}
+
+/* Shared card surface */
+.card {
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 0.5rem;
+}
+
+/* Pill badges */
+.badge-primary {
+    background-color: var(--c-border);
+    color: var(--c-primary);
+    padding: 0.125rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+.badge-accent {
+    background-color: var(--c-accent);
+    color: var(--c-bg);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+/* Table rows */
+.table-row {
+    border-top: 1px solid var(--c-border);
+}
+
+/* Stat bar track */
+.stat-track {
+    background-color: var(--c-border);
+    height: 6px;
+    border-radius: 9999px;
+    overflow: hidden;
+    width: 6rem;
+}
+
+.stat-fill {
+    background-color: var(--c-primary);
+    height: 100%;
+    border-radius: 9999px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--c-primary);
+    color: var(--c-bg);
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-ghost {
+    background-color: var(--c-border);
+    color: var(--c-text);
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+}
+
+/* Form inputs */
+.input {
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    color: var(--c-text);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    width: 100%;
+}
+
+/* Flash notice */
+.flash-notice {
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-primary);
+    color: var(--c-text);
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Warning flash (bulk import) */
+.flash-warning {
+    background-color: #3d2a00;
+    border: 1px solid var(--c-accent);
+    color: var(--c-accent);
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+}
+
+/* Status badges */
+.badge-valid {
+    background-color: #1a4a1a;
+    color: #4ade80;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+.badge-skipped {
+    background-color: #4a1a1a;
+    color: #f87171;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+.badge-error {
+    background-color: #4a1a1a;
+    border: 1px solid #f87171;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+}
+
+.text-error {
+    color: #f87171;
+}

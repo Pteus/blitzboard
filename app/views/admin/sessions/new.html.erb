@@ -1,9 +1,20 @@
-<h1>Admin login</h1>
+<div class="max-w-sm mx-auto mt-16 space-y-6">
 
-<%= form_with url: admin_login_path do %>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password"/>
-  </div>
-  <button type="submit">Log in</button>
-<% end %>
+  <h1 class="text-3xl accent">Admin Login</h1>
+
+  <%= form_with url: admin_login_path, class: "space-y-4" do %>
+    <% if alert.present? %>
+      <div class="badge-error">
+        <p class="text-sm text-error"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <div>
+      <label class="block text-xs uppercase tracking-widest primary mb-1">Password</label>
+      <input type="password" name="password" class="input"/>
+    </div>
+
+    <button type="submit" class="btn-primary w-full">Log in</button>
+  <% end %>
+
+</div>

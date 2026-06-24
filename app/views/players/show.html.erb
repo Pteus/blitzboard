@@ -1,26 +1,41 @@
-<div>
-  <h1><%= @player.name %></h1>
+<div class="space-y-8 max-w-lg">
 
-  <p>
-    <% if @player.team %>
-      <%= link_to @player.team.name, @player.team %>
-    <% else %>
-      Free agent
-    <% end %>
-  </p>
+  <div>
+    <h1 class="text-3xl accent"><%= @player.name %></h1>
 
-  <p>
-    Level: <%= @player.level %>
-  </p>
+    <p class="mt-1">
+      <% if @player.team %>
+        <%= link_to @player.team.name, @player.team, class: "primary hover:underline" %>
+      <% else %>
+        Free agent
+      <% end %>
+    </p>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <span class="text-xs uppercase tracking-widest muted">Level</span>
+    <span class="badge-accent text-lg px-4 py-1"><%= @player.level %></span>
+  </div>
 
   <h2>
     Stats
   </h2>
 
-  <ul>
-    <% [["Shoot", @player.sh], ["Pass", @player.pa], ["Block", @player.bl],
-        ["Endurance", @player.en], ["Speed", @player.sp], ["Attack", @player.at]].each do |label, val| %>
-      <li><%= label %>: <%= val %></li>
-    <% end %>
-  </ul>
+  <div class="card p-6">
+    <h2 class="text-xs uppercase tracking-widest primary mb-6">Stats</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <% [["Shoot", @player.sh], ["Pass", @player.pa], ["Block", @player.bl],
+          ["Endurance", @player.en], ["Speed", @player.sp], ["Attack", @player.at]].each do |label, val| %>
+        <div>
+          <p class="text-xs uppercase tracking-widest muted mb-1"><%= label %></p>
+          <div class="flex items-center gap-3">
+            <div class="stat-track">
+              <div class="stat-fill" style="width: <%= (val.to_f / 99 * 100).round %>%;"></div>
+            </div>
+            <span class="text-sm font-bold"><%= val %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

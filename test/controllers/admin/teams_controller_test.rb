@@ -3,6 +3,7 @@ require "test_helper"
 class Admin::TeamsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @team = Team.create!(name: "Besaid Aurochs", city: "Besaid", color: "#00b4d8")
+    post admin_login_url, params: { password: ENV.fetch("ADMIN_PASSWORD", "test") }
   end
 
   test "index lists teams" do

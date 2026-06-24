@@ -1,3 +1,11 @@
 class Admin::BaseController < ApplicationController
-  # this will have the require_admin validation here
+  before_action :require_admin
+
+  private
+
+  def require_admin
+    unless admin_signed_in?
+      redirect_to admin_login_path, alert: "Access denied."
+    end
+  end
 end

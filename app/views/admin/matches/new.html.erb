@@ -1,43 +1,43 @@
-<div>
-  <h1>Log a match</h1>
+<div class="max-w-md space-y-6">
 
-  <%= form_with model: [:admin, @match] do |f| %>
+  <h1 class="text-3xl accent">Log a match</h1>
+
+  <%= form_with model: [:admin, @match], class: "space-y-4" do |f| %>
     <% if f.object.errors.any? %>
-      <ul>
-        <% f.object.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
+      <div class="badge-error">
+        <% f.object.errors.full_messages.each do |msg| %>
+          <p class="text-sm text-error"><%= msg %></p>
         <% end %>
-      </ul>
+      </div>
     <% end %>
 
-
     <div>
-      <%= f.label :home_team_id, "Home team" %>
-      <%= f.select :home_team_id, @teams.map { |t| [t.name, t.id] } %>
+      <%= f.label :home_team_id, "Home Team", class: "block text-xs uppercase tracking-widest primary mb-1" %>
+      <%= f.select :home_team_id, @teams.map { |t| [t.name, t.id] }, class: "input" %>
     </div>
 
     <div>
-      <%= f.label :away_team_id, "Away team" %>
-      <%= f.select :away_team_id, @teams.map { |t| [t.name, t.id] } %>
+      <%= f.label :away_team_id, "Away team", class: "block text-xs uppercase tracking-widest primary mb-1" %>
+      <%= f.select :away_team_id, @teams.map { |t| [t.name, t.id] }, class: "input" %>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= f.label :home_score, class: "block text-xs uppercase tracking-widest primary mb-1" %>
+        <%= f.number_field :home_score, min: 0, class: "input" %>
+      </div>
+
+      <div>
+        <%= f.label :away_score, class: "block text-xs uppercase tracking-widest primary mb-1" %>
+        <%= f.number_field :away_score, min: 0, class: "input" %>
+      </div>
     </div>
 
     <div>
-      <%= f.label :home_score %>
-      <%= f.number_field :home_score, min: 0 %>
+      <%= f.label :played_at, "Date played", class: "block text-xs uppercase tracking-widest primary mb-1" %>
+      <%= f.date_field :played_at, class: "input" %>
     </div>
 
-    <div>
-      <%= f.label :away_score %>
-      <%= f.number_field :away_score, min: 0 %>
-    </div>
-
-    <div>
-      <%= f.label :played_at, "Date played" %>
-      <%= f.date_field :played_at %>
-    </div>
-
-    <%= f.submit "Log match" %>
+    <%= f.submit "Log match", class: "btn-primary w-full" %>
   <% end %>
 </div>
