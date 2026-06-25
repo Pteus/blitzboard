@@ -1,0 +1,7 @@
+<% matches.each do |match| %>
+  <div class="card p-4 flex items-center justify-between">
+    <span class="font-semibold"><%= link_to match.home_team.name, match.home_team %></span>
+    <span class="badge-primary text-lg"><%= match.home_score %> — <%= match.away_score %></span>
+    <span class="font-semibold"><%= link_to match.away_team.name, match.away_team %></span>
+  </div>
+<% end %>

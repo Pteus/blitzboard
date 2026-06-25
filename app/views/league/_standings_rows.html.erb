@@ -1,0 +1,13 @@
+<% standings.each_with_index do |row, i| %>
+  <tr class="table-row <%= 'font-semibold accent' if i == 0 %>">
+    <td class="py-3"><%= i + 1 %></td>
+    <td class="py-3 hover:underline"> <%= link_to row[:team].name, team_path(row[:team]) %></td>
+    <td class="py-3 text-center"><%= row[:played] %></td>
+    <td class="py-3 text-center"><%= row[:wins] %></td>
+    <td class="py-3 text-center"><%= row[:draws] %></td>
+    <td class="py-3 text-center"><%= row[:losses] %></td>
+    <td class="py-3 text-center"><%= row[:goals_for] %></td>
+    <td class="py-3 text-center"><%= row[:goals_against] %></td>
+    <td class="py-3 text-center font-bold"><%= row[:points] %></td>
+  </tr>
+<% end %>
