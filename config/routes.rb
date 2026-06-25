@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/agents", to: "roster#free_agents"
   root "league#index"
 
   namespace :admin do

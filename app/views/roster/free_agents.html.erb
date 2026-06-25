@@ -1,0 +1,22 @@
+<div class="space-y-6" data-controller="search">
+
+  <h1 class="text-3xl accent">Free agents</h1>
+  <input class="input max-w-sm"
+         type="text"
+         placeholder="Search free agents..."
+         data-action="input->search#filter"/>
+
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <% @players.each do |player| %>
+      <div class="card p-4 player-card" data-name="<%= player.name.downcase %>">
+        <%= link_to player.name, player, class: "primary font-semibold block mb-2" %>
+        <div class="flex gap-3 text-xs muted mb-3">
+          <span>SH <%= player.sh %></span>
+          <span>SP <%= player.sp %></span>
+          <span>EN <%= player.en %></span>
+        </div>
+        <span class="badge-accent">Lv <%= player.level %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
