@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "/agents", to: "roster#free_agents"
   root "league#index"
 
   namespace :admin do
@@ -9,10 +8,16 @@ Rails.application.routes.draw do
 
     resources :players
     resources :teams
-    resources :matches, only: [ :new, :create ]
+    resources :matches, only: [ :new, :create ] do
+      collection do
+        get :bulk_new
+        post :bulk_create
+      end
+    end
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
+  get "/agents", to: "roster#free_agents"
 
   resources :teams, only: [ :show ]
   resources :players, only: [ :show ]

@@ -16,6 +16,23 @@ class Admin::MatchesController < Admin::BaseController
     end
   end
 
+  def bulk_new
+  end
+
+  # TODO: I'm parsing the csv twice, there has to be a better way to do this
+  def bulk_create
+    raw = params[:raw_csv]
+    @valid, @invalid = BulkMatches.parse(raw)
+    @raw_csv = raw
+
+    if params[:confirm] && @valid.any?
+      BulkMatches.insert_all(@valid, Season.active)
+      redirect_to admin_teams_path, notice: "#{@valid.count} matches imported."
+    else
+      render :bulk_preview
+    end
+  end
+
   private
 
   def match_params

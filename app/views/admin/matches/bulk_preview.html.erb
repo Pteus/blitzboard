@@ -1,0 +1,56 @@
+<div class="space-y-6">
+
+  <h1 class="text-3xl accent">Bulk Import Preview</h1>
+
+  <% if @invalid.any? %>
+    <div class="flash-warning">
+      <%= @invalid.count %> row(s) have errors and will be skipped.
+    </div>
+  <% end %>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+      <tr class="text-xs uppercase tracking-widest primary">
+        <th class="pb-3 text-left">Row</th>
+        <th class="pb-3 text-left">Home</th>
+        <th class="pb-3 text-left">Away</th>
+        <th class="pb-3 text-center">Score</th>
+        <th class="pb-3 text-left">Date</th>
+        <th class="pb-3 text-left">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @valid.each do |row| %>
+        <tr class="table-row">
+          <td class="py-2 muted"><%= row[:row] %></td>
+          <td class="py-2"><%= row[:home_team].name %></td>
+          <td class="py-2"><%= row[:away_team].name %></td>
+          <td class="py-2 text-center"><%= row[:home_score] %> — <%= row[:away_score] %></td>
+          <td class="py-2"><%= row[:played_at].strftime("%b %-d, %Y") %></td>
+          <td class="py-2"><span class="badge-valid">Valid</span></td>
+        </tr>
+      <% end %>
+      <% @invalid.each do |row| %>
+        <tr class="table-row opacity-50">
+          <td class="py-2 muted"><%= row[:row] %></td>
+          <td class="py-2 text-error" colspan="4"><%= row[:reason] %></td>
+          <td class="py-2"><span class="badge-skipped">Skipped</span></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= form_with url: bulk_create_admin_matches_path, method: :post do %>
+    <%= hidden_field_tag :raw_csv, @raw_csv %>
+    <%= hidden_field_tag :confirm, true %>
+    <div class="flex gap-4 mt-4">
+      <button type="submit" class="btn-primary">
+        Confirm &amp; Import <%= @valid.count %> Matches
+      </button>
+      <%= link_to "Cancel", bulk_new_admin_matches_path, class: "btn-ghost" %>
+    </div>
+  <% end %>
+
+</div>

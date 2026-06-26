@@ -1,0 +1,17 @@
+<div class="max-w-xl space-y-6">
+
+  <h1 class="text-3xl accent">Bulk Import Matches</h1>
+
+  <p class="text-sm muted">
+    Paste CSV with columns:
+    <code class="primary">home_team, away_team, home_score, away_score, date</code>
+  </p>
+
+  <%= form_with url: bulk_create_admin_matches_path, method: :post, data: { turbo: false } do %>
+    <textarea name="raw_csv" rows="10"
+              placeholder="home_team,away_team,home_score,away_score,date&#10Besaid Aurochs,Luca Goers,3,1,2024-03-15"
+              class="input font-mono text-sm"></textarea>
+    <button type="submit" class="btn-primary mt-4">Preview Import</button>
+  <% end %>
+
+</div>
